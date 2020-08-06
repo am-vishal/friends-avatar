@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import CardList from './CardList'
+import { monster } from './monster';
+import SearchBox from './SearchBox';
 import './App.css';
+import Scroll from './Scroll';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            monster: monster,
+            searchfield: ''
+        }
+    }
+    onSearchChange = (event) => {
+        this.setState({ searchfield: event.target.value })
+    }
+    render() {
+        const filteredmonster = this.state.monster.filter(monster => {
+            return monster.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+        })
+        return (
+            <div className='tc' >
+                <h1>Monster Friend</h1>
+                <SearchBox searchChange={this.onSearchChange} />
+                <Scroll>
+                    <CardList monster={filteredmonster} />
+                </Scroll>
+            </div>
+        )
+    }
 }
-
 export default App;
