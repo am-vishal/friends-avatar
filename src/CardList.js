@@ -2,12 +2,12 @@ import React from 'react';
 import Card from './Card';
 
 //Example:1
-const CardList = ({ monster }) => {
-    const cardArray = monster.map((user, i) => {
+const CardList = ({ friends }) => {
+    const cardArray = friends.map((user, i) => {
         return (<Card key={i}
-            id={monster[i].id}
-            name={monster[i].name}
-            email={monster[i].email}
+            id={friends[i].id}
+            name={friends[i].name}
+            email={friends[i].email}
         />)
     })
     return (
@@ -18,18 +18,18 @@ const CardList = ({ monster }) => {
 }
 
 // or you could write like this
-// const CardList = ({ monster }) => {
+// const CardList = ({ friends }) => {
 //     return (
 //         <div>
 //             {
-//                 monster.map((user, i) => {
+//                 friends.map((user, i) => {
 //                     return (
 
 //                         <Card
 //                             key={i}
-//                             id={monster[i].id}
-//                             name={monster[i].name}
-//                             email={monster[i].email}
+//                             id={friends[i].id}
+//                             name={friends[i].name}
+//                             email={friends[i].email}
 //                         />
 //                     );
 //                 })

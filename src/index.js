@@ -6,7 +6,7 @@ import Card from './Card';
 import * as serviceWorker from './serviceWorker';
 import 'tachyons';
 import CardList from './CardList';
-import { monster } from './monster';
+import { friends } from './friends';
 
 ReactDOM.render(
     <App />,
