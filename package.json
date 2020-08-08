@@ -1,6 +1,6 @@
 {
-  "homepage": "https://am-vishal.github.io/search_friends/",
-  "name": "search_friends",
+  "homepage": "https://am-vishal.github.io/friends-avatar/",
+  "name": "friends-avatar",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
