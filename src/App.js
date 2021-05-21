@@ -1,37 +1,38 @@
 import React, { Component } from 'react';
-import CardList from './CardList'
-import { friends } from './friends';
-import SearchBox from './SearchBox';
 import './App.css';
-import Scroll from './Scroll';
-
-
+import { CardList } from './components/card-list/card-list.component';
+import { SearchBox } from './components/search-box/search-box.component';
 
 class App extends Component {
-    constructor() {
-        super()
-        this.state = {
-            friends: friends,
-            searchfield: ''
-        }
-    }
-    onSearchChange = (event) => {
-        this.setState({ searchfield: event.target.value })
-    }
-    render() {
-        const filteredfriends = this.state.friends.filter(friends => {
-            return friends.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
-        })
-        return (
-            <div className='tc' >
-                <h1>Friends Avatar</h1>
-                <SearchBox searchChange={this.onSearchChange} />
+  constructor() {
+    super();
+    this.state = { friends: [], searchField: '' };
+  }
 
-                <Scroll>
-                    <CardList friends={filteredfriends} />
-                </Scroll>
-            </div>
-        )
-    }
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(response => response.json())
+      .then(users => this.setState({ friends: users }));
+  }
+
+  onSearchChange = event => {
+    this.setState({ searchField: event.target.value });
+  };
+
+  render() {
+    const { friends, searchField } = this.state;
+    const filteredfriends = friends.filter(friend =>
+      friend.name.toLowerCase().includes(searchField.toLowerCase())
+    );
+
+    return (
+      <div className='App'>
+        <h1>Friends Avatar</h1>
+        <SearchBox onSearchChange={this.onSearchChange} />
+        <CardList friends={filteredfriends} />
+      </div>
+    );
+  }
 }
+
 export default App;
